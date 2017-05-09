@@ -10,3 +10,17 @@ voice {
     gender = 'male'
     language = 'ur'
 }
+
+repositories {
+    flatDir dirs: rootDir
+}
+
+dependencies {
+    maryttsCompile group: 'de.dfki.mary', name: 'marytts-runtime', version: '5.2'
+}
+
+task unpackData(type: Copy) {
+    from zipTree('newvoice3.zip')
+    into buildDir
+    legacyInit.dependsOn it
+}
